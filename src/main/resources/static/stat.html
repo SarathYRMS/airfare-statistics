@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KLM Technical Assignmkent</title>
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <style>
+        #stat {
+            margin-top: 10px;
+            font-size: 20px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script>
+
+    window.addEventListener('DOMContentLoaded', function() {
+         $.ajax({
+            url: "./statistics"
+         }).done(function (data) {
+            $("#stat").text(JSON.stringify(data, null, "   "));
+         });
+    });
+
+</script>
+</head>
+
+<body>
+<div class="container">
+
+    <div class="row">
+        <div class="jumbotron">
+            <h1>KLM Technical Assignmkent</h1>
+        </div>
+    </div>
+    <div class="row">
+        <a class="btn btn-primary btn-lg" href="./index.html" role="button">Assignment</a>
+        <a class="btn btn-success btn-lg" href="./search.html" role="button">Search</a>
+        <a class="btn btn-warning btn-lg" href="./stat.html" role="button">Statistics</a>
+    </div>
+
+    <div class="row">
+        <pre id="stat">
+        </pre>
+    </div>
+
+    <br/>
+    <h2>All Airports</h2>
+    <table id="example" class="display" style="width:100%">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable( {
+            "ajax": {
+                url: '/travel/airports',
+                "dataSrc": ""
+            },
+            columns: [
+                { data: "name" },
+                { data: "code" },
+                { data: "description" }
+            ]
+        } );
+    } );
+</script>
+</body>
+</html>

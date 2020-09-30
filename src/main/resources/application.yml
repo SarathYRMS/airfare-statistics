@@ -1,0 +1,14 @@
+server:
+  port: 9000
+  path: /travel
+  servlet:
+    context-path: /travel
+
+simple-travel-api:
+  auth:
+    username: "travel-api-client"
+    password: "pwd"
+  url: "http://localhost:8080"
+  airportsUrl: "http://localhost:8080/airports"
+  airportKeyUrl: "http://localhost:8080/airports/{key}"
+  airportOriginDestinationUrl: "http://localhost:8080/fares/{origin}/{destination}"
